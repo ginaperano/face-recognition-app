@@ -1,10 +1,10 @@
 
 import React, { Component } from 'react';
-import Navigation from './components/navigation/navigation';
+import Navigation from './Components/Navigation/Navigation';
 import Particles from 'react-particles-js';
-import Logo from './components/logo/logo';
-import Rank from './components/rank/rank';
-import ImageLinkForm from './components/imagelinkform/imagelinkform';
+import Logo from './Components/Logo/Logo';
+import Rank from './Components/Rank/Rank';
+import ImageLinkForm from './Components/ImageLinkForm/ImageLinkForm';
 import './App.css';
 
 
@@ -20,6 +20,21 @@ const particlesOptions = {
   }
 }
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      input: '',
+
+    }
+  }
+
+  onInputChange = (event) => {
+    console.log(event.target.value);
+  }
+
+  onButtonSubmit = () => {
+    console.log('click');
+  }
   render() {
     return (
       <div className="App" >
@@ -29,7 +44,8 @@ class App extends Component {
         < Navigation />
         <Logo />
         <Rank />
-        <ImageLinkForm />
+        <ImageLinkForm onInputChange={this.onInputChange}
+          onButtonSubmit={this.onButtonSubmit} />
         {/*<FaceRecognition />*/}
       </div>
     );
