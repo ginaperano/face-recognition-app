@@ -1,12 +1,17 @@
-
 import React, { Component } from 'react';
-import Navigation from './Components/Navigation/Navigation';
 import Particles from 'react-particles-js';
-import Logo from './Components/Logo/Logo';
-import Rank from './Components/Rank/Rank';
-import ImageLinkForm from './Components/ImageLinkForm/ImageLinkForm';
+import Clarifai from 'clarifai';
+import FaceRecognition from './components/FaceRecognition/FaceRecognition';
+import Navigation from './components/Navigation/Navigation';
+import Logo from './components/Logo/Logo';
+import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
+import Rank from './components/Rank/Rank';
 import './App.css';
 
+//You must add your own API key here from Clarifai.
+const app = new Clarifai.App({
+  apiKey: '81d9228c366841f6906531d990c75ae8'
+});
 
 const particlesOptions = {
   particles: {
@@ -24,16 +29,28 @@ class App extends Component {
     super();
     this.state = {
       input: '',
-
+      imageUrl: '',
     }
   }
 
   onInputChange = (event) => {
-    console.log(event.target.value);
+    this.setState(event.target.value);
   }
 
   onButtonSubmit = () => {
+    this.setState({ imageUrl: this.state.input })
     console.log('click');
+    app.models.predict(
+      Clarifai.COLOR_MODEL,
+      "https://samples.clarifai.com/face-det.jpg"
+    ).then(
+      function (response) {
+        console.log(response);
+      },
+      function (err) {
+        // there was an error 
+      }
+    );
   }
   render() {
     return (
@@ -46,7 +63,7 @@ class App extends Component {
         <Rank />
         <ImageLinkForm onInputChange={this.onInputChange}
           onButtonSubmit={this.onButtonSubmit} />
-        {/*<FaceRecognition />*/}
+        <FaceRecognition imageUrl={this.state.ImageUrl} />
       </div>
     );
   }
