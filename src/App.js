@@ -1,6 +1,7 @@
 import React from 'react';
 import Logo from './components/logo/logo';
 import Navigation from './components/navigation/navigation';
+import ImageLinkForm from './components/imagelinkform/imagelinkform';
 
 
 import './App.css';
