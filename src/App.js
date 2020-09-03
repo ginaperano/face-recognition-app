@@ -10,7 +10,6 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import './App.css';
 
-//You must add your own API key here from Clarifai.
 const app = new Clarifai.App({
   apiKey: '81d9228c366841f6906531d990c75ae8'
 });
@@ -104,7 +103,6 @@ class App extends Component {
             .then(count => {
               this.setState(Object.assign(this.state.user, { entries: count }))
             })
-            .catch(console.log)
 
         }
         this.displayFaceBox(this.calculateFaceLocation(response))
