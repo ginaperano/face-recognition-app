@@ -74,6 +74,16 @@ class App extends Component {
     }
   }
 
+  getNumOfFaces = (data) => {
+    if (data.outputs[0].data.regions !== undefined) {
+      const faceCount = Object.keys(data.outputs[0].data.regions).length;
+      this.setState({ faceCountPrompt: faceCount + 'faces found!' });
+    } else {
+      this.setState({ faceCountPrompt: '0 faces found' });
+    }
+    console.log(this.state.faceCountPrompt);
+  }
+
   displayFaceBox = (box) => {
     this.setState({ box: box });
   }
