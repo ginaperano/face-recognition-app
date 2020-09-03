@@ -74,8 +74,6 @@ class App extends Component {
     }
   }
 
-
-
   displayFaceBox = (box) => {
     this.setState({ box: box });
   }
@@ -147,8 +145,6 @@ class App extends Component {
     );
   }
 }
-
-
 
 
 export default App;
